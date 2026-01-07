@@ -1,0 +1,90 @@
+[
+  {
+    "id": "PRJ-001",
+    "name": "Nombre de la Propuesta",
+    "organization": "Nombre de la Organización",
+    "category": "iniciativa-con-evidencia-impacto",
+    "thematicArea": "prevencion-violencias-ninos-adolescentes",
+    "state": "Jalisco",
+    "municipality": "Guadalajara",
+    "implementationStates": ["Michoacán", "Colima"],
+    "objective": "Descripción del objetivo principal del proyecto",
+    "beneficiaries": "1,500 personas",
+    "riskFactors": "Factores de riesgo identificados en el proyecto",
+    "methodology": "Descripción de la metodología utilizada",
+    "results": "Resultados principales obtenidos",
+    "evaluationCriteriaHighlights": "Criterios de evaluación destacados",
+    "totalScore": 85,
+    "finalRankingPosition": 1,
+    "imageUrl": "https://images.unsplash.com/photo-...",
+    "beneficiariesImageUrl": "https://images.unsplash.com/photo-...",
+    "riskFactorsImageUrl": "https://images.unsplash.com/photo-...",
+    "methodologyImageUrl": "https://images.unsplash.com/photo-...",
+    "resultsImageUrl": "https://images.unsplash.com/photo-...",
+    "footerOrganizationName": "Nombre para el Footer",
+    "footerContactEmail": "contacto@organizacion.org",
+    "footerContactPhone": "+52 33 1234 5678",
+    "footerContactEmail2": "contacto2@organizacion.org",
+    "footerContactPhone2": "+52 33 8765 4321",
+    "footerWebsiteUrl": "https://www.ejemplo.com",
+    "footerPhysicalAddress": "Calle Ejemplo 123, Colonia Centro, Guadalajara, Jalisco, CP 44100",
+    "footerInstagramUrl": "https://instagram.com/...",
+    "footerFacebookUrl": "https://facebook.com/...",
+    "footerXUrl": "https://x.com/...",
+    "footerLinkedinUrl": "https://linkedin.com/...",
+    "footerTiktokUrl": "https://tiktok.com/...",
+    "footerYoutubeUrl": "https://youtube.com/...",
+    "latitude": 20.6597,
+    "longitude": -103.3496,
+    "location": {
+      "state": "Jalisco",
+      "city": "Guadalajara",
+      "x": 45.5,
+      "y": 62.3
+    }
+  }
+]
+
+// INSTRUCCIONES DE USO:
+// 
+// 1. CATEGORÍAS DISPONIBLES:
+//    - "iniciativa-con-evidencia-impacto" (Iniciativa con evidencia de impacto o resultado)
+//    - "iniciativa-prometedora" (Iniciativa prometedora)
+//    - "proyecto" (Proyecto)
+//
+// 2. ÁMBITOS TEMÁTICOS DISPONIBLES:
+//    - "prevencion-violencias-ninos-adolescentes"
+//    - "prevencion-violencia-intrafamiliar-maltrato-infantil" (Prevención de la violencia intrafamiliar y el maltrato infantil)
+//    - "proteccion-lideres-sociales-defensores-periodistas"
+//    - "rehabilitacion-reinsercion-social-jovenes-adultos" (Reinserción social de jóvenes y adultos en conflicto con la justicia)
+//    - "prevencion-situacional"
+//    - "mediacion-resolucion-conflictos"
+//    - "policia-comunitaria"
+//    - "desarrollo-capacidades-seguridad-ciudadana"
+//    - "cultura-paz-prevencion-violencia"
+//
+// 3. ESTADOS DE MÉXICO:
+//    Aguascalientes, Baja California, Baja California Sur, Campeche, Chiapas, 
+//    Chihuahua, Ciudad de México, Coahuila, Colima, Durango, Estado de México, 
+//    Guanajuato, Guerrero, Hidalgo, Jalisco, Michoacán, Morelos, Nayarit, 
+//    Nuevo León, Oaxaca, Puebla, Querétaro, Quintana Roo, San Luis Potosí, 
+//    Sinaloa, Sonora, Tabasco, Tamaulipas, Tlaxcala, Veracruz, Yucatán, Zacatecas
+//
+// 4. CAMPOS OPCIONALES:
+//    - implementationStates (array de estados adicionales donde se implementa)
+//    - riskFactors, methodology, evaluationCriteriaHighlights
+//    - finalRankingPosition
+//    - Todas las imágenes de secciones
+//    - Todos los campos del footer
+//
+// 5. COORDENADAS:
+//    - No necesitas calcular latitude/longitude (se generan automáticamente)
+//    - location.x y location.y se generan automáticamente basados en el estado
+//    - Puedes ajustar manualmente en el admin panel si es necesario
+//
+// 6. PARA IMPORTAR:
+//    - Guarda este archivo como .json
+//    - Abre el panel Admin
+//    - Haz clic en "Seleccionar Archivo JSON"
+//    - Elige modo "Combinar" o "Reemplazar Todo"
+//    - Confirma la importación

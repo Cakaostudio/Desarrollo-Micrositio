@@ -1,0 +1,1452 @@
+/* Optimized font loading with swap display for better performance */
+@import url('https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+/* Preconnect to critical origins */
+@supports (font: -apple-system-body) {
+  :root {
+    font-synthesis: none;
+  }
+}
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --font-size: 16px;
+  --background: #ffffff;
+  --foreground: oklch(0.145 0 0);
+  --card: #ffffff;
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: #030213;
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.95 0.0058 264.53);
+  --secondary-foreground: #030213;
+  --muted: #ececf0;
+  --muted-foreground: #717182;
+  --accent: #e9ebef;
+  --accent-foreground: #030213;
+  --destructive: #d4183d;
+  --destructive-foreground: #ffffff;
+  --border: rgba(0, 0, 0, 0.1);
+  --input: transparent;
+  --input-background: #f3f3f5;
+  --switch-background: #cbced4;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: #030213;
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.145 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.145 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.985 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.396 0.141 25.723);
+  --destructive-foreground: oklch(0.637 0.237 25.331);
+  --border: oklch(0.269 0 0);
+  --input: oklch(0.269 0 0);
+  --ring: oklch(0.439 0 0);
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(0.269 0 0);
+  --sidebar-ring: oklch(0.439 0 0);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-switch-background: var(--switch-background);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    background-color: #0c4159;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Arvo', serif;
+  }
+}
+
+/**
+ * Base typography. This is not applied to elements which have an ancestor with a Tailwind text class.
+ */
+@layer base {
+  :where(:not(:has([class*=" text-"]), :not(:has([class^="text-"])))) {
+    h1 {
+      font-size: var(--text-2xl);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+    }
+
+    h2 {
+      font-size: var(--text-xl);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+    }
+
+    h3 {
+      font-size: var(--text-lg);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+    }
+
+    h4 {
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+    }
+
+    p {
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-normal);
+      line-height: 1.5;
+    }
+
+    label {
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+    }
+
+    button {
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+    }
+
+    input {
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-normal);
+      line-height: 1.5;
+    }
+  }
+}
+
+html {
+  font-size: var(--font-size);
+}
+
+/* Custom animations */
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 53%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40%, 43% {
+    transform: translateY(-8px);
+  }
+  70% {
+    transform: translateY(-4px);
+  }
+  90% {
+    transform: translateY(-2px);
+  }
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes heroFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes markerAppear {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+  }
+  60% {
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.3;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+@keyframes tooltipAppear {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-100%) translateY(-10px) scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-100%) translateY(0) scale(1);
+  }
+}
+
+@keyframes tooltipPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.75;
+  }
+  50% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+@keyframes scrollPersuade {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.6;
+  }
+  25% {
+    transform: translateY(8px) scale(1.05);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateY(12px) scale(1.1);
+    opacity: 1;
+  }
+  75% {
+    transform: translateY(8px) scale(1.05);
+    opacity: 0.8;
+  }
+}
+
+@keyframes titleExpand {
+  from {
+    max-height: 0;
+    opacity: 0;
+  }
+  to {
+    max-height: 40px;
+    opacity: 1;
+  }
+}
+
+@keyframes ctaPulse {
+  0%, 100% {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  50% {
+    box-shadow: 0 6px 12px rgba(251, 191, 36, 0.4), 0 0 0 3px rgba(251, 191, 36, 0.2);
+  }
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.3s ease-out;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.2s ease-out;
+}
+
+.animate-pulse-hover {
+  animation: pulse 2s infinite;
+}
+
+.animate-bounce-gentle {
+  animation: bounce 0.6s ease-in-out;
+}
+
+.animate-slide-in-up {
+  animation: slideInUp 0.4s ease-out;
+}
+
+.animate-slide-in-down {
+  animation: slideInDown 0.2s ease-out;
+}
+
+.animate-marker-appear {
+  animation: markerAppear 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  opacity: 0;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite;
+}
+
+.animate-hero-fade-in {
+  animation: heroFadeIn 0.8s ease-out forwards;
+}
+
+.animate-scroll-persuade {
+  animation: scrollPersuade 2.5s ease-in-out infinite;
+}
+
+/* Support for animation-delay using inline styles */
+
+/* ============================================
+   MOBILE HOVER IMPROVEMENTS
+   Touch-friendly interactions for devices without hover
+   ============================================ */
+
+/* Detect hover capability - apply hover effects only on devices with precise pointing */
+@media (hover: hover) and (pointer: fine) {
+  /* Desktop/Mouse: Normal hover behavior */
+  .hover-capable-only:hover {
+    /* Hover effects will work normally */
+  }
+}
+
+/* Touch devices: Convert hover to active/focus states */
+@media (hover: none) and (pointer: coarse) {
+  /* Remove hover-only animations on touch devices */
+  .hover\:animate-bounce-gentle:hover {
+    animation: none;
+  }
+  
+  /* Add tap feedback instead */
+  .touch-tap-feedback:active {
+    transform: scale(0.95);
+    transition: transform 0.1s ease-out;
+  }
+  
+  /* Make tooltips sticky on tap (don't disappear on hover out) */
+  .mobile-sticky-tooltip {
+    pointer-events: auto;
+  }
+  
+  /* Enhanced tap target sizes for mobile */
+  .mobile-tap-target {
+    min-width: 44px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Ripple effect for taps */
+  @keyframes tapRipple {
+    0% {
+      transform: scale(0);
+      opacity: 0.6;
+    }
+    100% {
+      transform: scale(2);
+      opacity: 0;
+    }
+  }
+  
+  .tap-ripple {
+    animation: tapRipple 0.6s ease-out;
+  }
+}
+
+/* Universal touch improvements - work on all devices */
+.touch-feedback {
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+/* Active state for all interactive elements on mobile */
+.mobile-active:active {
+  opacity: 0.7;
+  transform: scale(0.97);
+  transition: all 0.15s ease-out;
+}
+
+/* Smooth transitions for touch interactions */
+.touch-smooth {
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Mobile tooltip visibility - tap to show, tap outside to hide */
+@media (hover: none) {
+  .hover-tooltip {
+    /* On mobile, tooltips should be triggered by tap, not hover */
+    pointer-events: auto;
+  }
+  
+  /* Enhanced shadow for mobile tooltips to make them stand out against lighter backdrop */
+  .hover-tooltip > div {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 
+                0 8px 16px rgba(0, 0, 0, 0.35),
+                0 0 0 1px rgba(255, 255, 255, 0.1);
+  }
+  
+  /* Make mobile tooltip cards slightly more prominent */
+  .hover-tooltip {
+    z-index: 60 !important;
+  }
+}
+[style*="animation-delay"] {
+  animation-fill-mode: both;
+}
+
+/* Custom scrollbar styling for filter dropdown */
+.max-h-64::-webkit-scrollbar {
+  width: 6px;
+}
+
+.max-h-64::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+.max-h-64::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+}
+
+.max-h-64::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* Line clamp utility for text truncation */
+.line-clamp-1 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-height: 1.4;
+}
+
+/* Search suggestions scrollbar styling */
+.max-h-96::-webkit-scrollbar {
+  width: 6px;
+}
+
+.max-h-96::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 3px;
+}
+
+.max-h-96::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+.max-h-96::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* ========================================
+   STACKED CARDS PREMIUM SYSTEM
+   ======================================== */
+
+/* Motion tokens */
+:root {
+  /* Timing functions */
+  --ease-enter: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-exit: cubic-bezier(0.2, 0, 0, 1);
+  --ease-interactive: cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Durations */
+  --duration-small: 220ms;
+  --duration-medium: 280ms;
+  --duration-long: 360ms;
+  
+  /* Elevation shadows (layered for depth) */
+  --shadow-0: none;
+  --shadow-1: 
+    0 1px 2px rgba(0, 0, 0, 0.04),
+    0 0 0 1px rgba(0, 0, 0, 0.02);
+  --shadow-2: 
+    0 2px 8px rgba(0, 0, 0, 0.04),
+    0 1px 3px rgba(0, 0, 0, 0.06),
+    0 0 0 1px rgba(0, 0, 0, 0.02);
+  --shadow-3:
+    0 4px 12px rgba(0, 0, 0, 0.06),
+    0 2px 6px rgba(0, 0, 0, 0.04),
+    0 0 0 1px rgba(0, 0, 0, 0.02);
+  --shadow-4: 
+    0 8px 24px rgba(0, 0, 0, 0.08),
+    0 4px 12px rgba(0, 0, 0, 0.06),
+    0 2px 4px rgba(0, 0, 0, 0.04),
+    0 0 0 1px rgba(0, 0, 0, 0.02);
+  
+  /* Card radii */
+  --radius-card: 15px;
+  --radius-tab: 10px;
+  
+  /* Baseline grid */
+  --grid-unit: 8px;
+  
+  /* Section gradient overlays (subtle depth) */
+  --gradient-white: linear-gradient(165deg, rgba(255, 255, 255, 1) 0%, rgba(250, 250, 252, 1) 100%);
+  --gradient-gray: linear-gradient(165deg, rgba(250, 250, 250, 1) 0%, rgba(245, 245, 247, 1) 100%);
+  --gradient-soft: linear-gradient(165deg, rgba(245, 245, 245, 1) 0%, rgba(240, 240, 242, 1) 100%);
+}
+
+.dark {
+  /* Dark mode shadows */
+  --shadow-0: none;
+  --shadow-1: 
+    0 1px 2px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.05);
+  --shadow-2: 
+    0 2px 8px rgba(0, 0, 0, 0.4),
+    0 1px 3px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.05);
+  --shadow-3:
+    0 4px 12px rgba(0, 0, 0, 0.5),
+    0 2px 6px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.05);
+  --shadow-4: 
+    0 8px 24px rgba(0, 0, 0, 0.6),
+    0 4px 12px rgba(0, 0, 0, 0.5),
+    0 2px 4px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.05);
+  
+  /* Dark mode gradients */
+  --gradient-white: linear-gradient(165deg, rgba(30, 30, 32, 1) 0%, rgba(25, 25, 27, 1) 100%);
+  --gradient-gray: linear-gradient(165deg, rgba(25, 25, 27, 1) 0%, rgba(20, 20, 22, 1) 100%);
+  --gradient-soft: linear-gradient(165deg, rgba(20, 20, 22, 1) 0%, rgba(15, 15, 17, 1) 100%);
+}
+
+/* Premium card enter animation */
+@keyframes cardEnterPremium {
+  from {
+    opacity: 0.85;
+    transform: translateY(16px) scale(0.995);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Premium card exit animation */
+@keyframes cardExitPremium {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0.85;
+    transform: translateY(-12px) scale(0.995);
+  }
+}
+
+/* Tab label fade in - with slide from left for stacking effect */
+@keyframes tabLabelFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px) translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) translateY(0);
+  }
+}
+
+/* Progress indicator pulse */
+@keyframes progressPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.9;
+  }
+}
+
+/* Stacked card base styles - for true physical stacking */
+.stacked-card {
+  border-radius: var(--radius-card);
+  position: relative;
+  
+  /* Performance optimizations - GPU acceleration */
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  perspective: 1000px;
+  transform: translateZ(0);
+  
+  /* Remove transitions - handled by inline styles with RAF */
+}
+
+/* Elevation states - using shadow tokens */
+.stacked-card[data-state="inactive"] {
+  box-shadow: var(--shadow-0);
+}
+
+.stacked-card[data-state="near"] {
+  box-shadow: var(--shadow-1);
+}
+
+.stacked-card[data-state="hovered"] {
+  box-shadow: var(--shadow-2);
+  transform: translateY(-2px);
+}
+
+.stacked-card[data-state="active"] {
+  box-shadow: var(--shadow-4);
+  /* Only use will-change when actively scrolling - removed to improve performance */
+}
+
+.stacked-card[data-state="leaving"] {
+  animation: cardExitPremium var(--duration-small) var(--ease-exit) forwards;
+}
+
+/* Optimize rendering for off-screen cards */
+.stacked-card[data-state="inactive"],
+.stacked-card[data-state="far"] {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 100vh;
+}
+
+/* Premium tab styling - file folder stack effect */
+.card-tab {
+  position: absolute;
+  top: calc(var(--grid-unit) * -4);
+  /* left is set inline based on index for stacking */
+  height: calc(var(--grid-unit) * 4);
+  padding: 0 calc(var(--grid-unit) * 2.5);
+  border-radius: 12px 12px 0 0;
+  display: flex;
+  align-items: center;
+  gap: calc(var(--grid-unit) * 1.25);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  backdrop-filter: blur(10px);
+  animation: tabLabelFadeIn var(--duration-small) var(--ease-enter) calc(var(--duration-small) * 0.5) backwards;
+  transition: transform var(--duration-medium) var(--ease-interactive),
+              box-shadow var(--duration-medium) var(--ease-interactive);
+  max-width: 200px;
+  overflow: hidden;
+  white-space: nowrap;
+  /* GPU acceleration - removed will-change for better performance */
+  transform: translateZ(0);
+  /* Enhanced shadow for better depth */
+  box-shadow: 
+    0 2px 6px rgba(0, 0, 0, 0.1),
+    0 1px 3px rgba(0, 0, 0, 0.06),
+    0 0 0 1px rgba(0, 0, 0, 0.05);
+  /* Border on sides and top for folder effect */
+  border-left: 1px solid rgba(12, 65, 89, 0.12);
+  border-right: 1px solid rgba(12, 65, 89, 0.12);
+  border-top: 1px solid rgba(12, 65, 89, 0.12);
+}
+
+/* Add subtle depth notch on left side of tabs (except first) */
+.card-tab[data-index]:not([data-index="0"])::before {
+  content: '';
+  position: absolute;
+  left: -8px;
+  top: 0;
+  bottom: 0;
+  width: 8px;
+  background: linear-gradient(to left, rgba(0, 0, 0, 0.03), transparent);
+  border-radius: var(--radius-tab) 0 0 0;
+  pointer-events: none;
+}
+
+.card-tab span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.card-tab-icon {
+  width: 16px;
+  height: 16px;
+  opacity: 0.8;
+  flex-shrink: 0;
+}
+
+/* Active tab highlight */
+.card-tab[data-active="true"]::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: oklch(0.65 0.25 30);
+  border-radius: 3px 3px 0 0;
+}
+
+/* Active tab gets elevated in the stack */
+.card-tab[data-active="true"] {
+  transform: translate3d(0, -3px, 0);
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.15),
+    0 2px 6px rgba(0, 0, 0, 0.1),
+    0 1px 3px rgba(0, 0, 0, 0.06),
+    0 0 0 1px rgba(0, 0, 0, 0.05);
+  height: calc(var(--grid-unit) * 4.5);
+  top: calc(var(--grid-unit) * -4.5);
+}
+
+/* Hover effect on tabs */
+.card-tab:hover {
+  transform: translate3d(0, -2px, 0);
+  box-shadow: 
+    0 3px 8px rgba(0, 0, 0, 0.12),
+    0 2px 4px rgba(0, 0, 0, 0.08),
+    0 1px 2px rgba(0, 0, 0, 0.06),
+    0 0 0 1px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+}
+
+.card-tab[data-active="true"]:hover {
+  transform: translate3d(0, -4px, 0);
+}
+
+/* Focus state for keyboard navigation */
+.card-tab:focus-visible {
+  outline: 2px solid oklch(0.65 0.25 30);
+  outline-offset: 2px;
+  transform: translate3d(0, -2px, 0);
+}
+
+/* Tab interaction feedback */
+.card-tab:active {
+  transform: translate3d(0, 0, 0);
+  transition-duration: 50ms;
+}
+
+/* Responsive tab stacking for smaller screens */
+@media (max-width: 768px) {
+  .card-tab {
+    max-width: 120px;
+    font-size: 11px;
+    padding: 0 calc(var(--grid-unit) * 1.5);
+    height: calc(var(--grid-unit) * 3.5);
+    top: calc(var(--grid-unit) * -3.5);
+    /* Tighter stacking on mobile - start well after close button */
+    left: calc(76px + calc(var(--data-index, 0) * 105px)) !important;
+  }
+  
+  .card-tab[data-active="true"] {
+    height: calc(var(--grid-unit) * 4);
+    top: calc(var(--grid-unit) * -4);
+  }
+  
+  .card-tab span {
+    max-width: 80px;
+  }
+  
+  .card-tab-icon {
+    width: 14px;
+    height: 14px;
+  }
+  
+  /* Hide tabs that would overflow on mobile */
+  .card-tab[data-index="4"],
+  .card-tab[data-index="5"],
+  .card-tab[data-index="6"],
+  .card-tab[data-index="7"] {
+    display: none;
+  }
+}
+
+/* Extra small screens - even tighter stacking */
+@media (max-width: 480px) {
+  .card-tab {
+    max-width: 100px;
+    font-size: 10px;
+    padding: 0 calc(var(--grid-unit) * 1.5);
+    height: calc(var(--grid-unit) * 3);
+    top: calc(var(--grid-unit) * -3);
+    /* Very tight stacking on small phones - start after close button (52px + 8px margin) */
+    left: calc(60px + calc(var(--data-index, 0) * 85px)) !important;
+  }
+  
+  .card-tab[data-active="true"] {
+    height: calc(var(--grid-unit) * 3.5);
+    top: calc(var(--grid-unit) * -3.5);
+  }
+  
+  .card-tab span {
+    max-width: 65px;
+  }
+  
+  .card-tab-icon {
+    width: 12px;
+    height: 12px;
+  }
+  
+  /* Hide all tabs on small screens to prevent overlap */
+  .card-tab {
+    display: none !important;
+  }
+}
+
+/* Inner stroke using color-mix */
+.card-inner-stroke {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-card);
+  pointer-events: none;
+  border: 1px solid rgba(12, 65, 89, 0.08);
+  z-index: 5;
+}
+
+.dark .card-inner-stroke {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Content visibility optimization - skip rendering off-screen cards */
+.stacked-card[data-state="far"] {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 100vh;
+  contain: layout style paint;
+}
+
+/* Parallax background layer */
+.card-bg-parallax {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+  /* Removed will-change for better performance */
+  transform: translateZ(0);
+}
+
+.card-bg-parallax::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  background: var(--card-gradient);
+  transform: translate3d(0, var(--parallax-offset, 0), 0);
+  transition: transform var(--duration-medium) var(--ease-interactive);
+  opacity: 0.6;
+  /* Removed will-change for better performance */
+}
+
+/* Scroll container for card stacking system */
+.stacked-cards-container {
+  /* Scroll-snap disabled - using custom scroll-driven animation */
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  
+  /* Performance optimizations */
+  transform: translateZ(0);
+  will-change: scroll-position;
+}
+
+/* Mobile container - simpler scrolling without absolute positioning */
+.stacked-cards-container-mobile {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  overflow-y: auto;
+  /* Performance optimization */
+  transform: translateZ(0);
+}
+
+/* Content max-width and rhythm */
+.card-content-wrapper {
+  max-width: 70ch;
+  line-height: calc(var(--grid-unit) * 3);
+}
+
+/* Progress rail enhancements */
+.progress-dot {
+  position: relative;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  transition: all var(--duration-small) var(--ease-interactive);
+}
+
+.progress-dot::before {
+  content: attr(data-number);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 8px;
+  font-weight: 700;
+  opacity: 0;
+  transition: opacity var(--duration-small) var(--ease-interactive);
+}
+
+.progress-dot[data-active="true"] {
+  animation: progressPulse 2s var(--ease-interactive) infinite;
+}
+
+.progress-dot[data-active="true"]::before,
+.progress-dot:hover::before {
+  opacity: 1;
+}
+
+/* Hide scrollbar with smooth experience */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Reduced motion support - respectful degradation */
+@media (prefers-reduced-motion: reduce) {
+  .stacked-card {
+    animation: none;
+    transition: opacity var(--duration-small) ease-out;
+  }
+  
+  .card-tab {
+    animation: none;
+  }
+  
+  .card-bg-parallax::before {
+    transform: none !important;
+  }
+  
+  .progress-dot[data-active="true"] {
+    animation: none;
+  }
+  
+  @keyframes cardEnterPremium {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes cardExitPremium {
+    from { opacity: 1; }
+    to { opacity: 0; }
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .card-inner-stroke {
+    border-width: 2px;
+    border-color: currentColor;
+  }
+  
+  .card-tab[data-active="true"]::after {
+    height: 3px;
+  }
+}
+
+/* Utility classes for premium polish */
+.text-balanced {
+  text-wrap: balance;
+}
+
+.text-pretty {
+  text-wrap: pretty;
+}
+
+.grid-baseline {
+  line-height: calc(var(--grid-unit) * 3);
+  margin-bottom: calc(var(--grid-unit) * 3);
+}
+
+.content-max-width {
+  max-width: 70ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Screen reader only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Focus visible enhancement */
+.focus-premium:focus-visible {
+  outline: 2px solid oklch(0.65 0.25 30);
+  outline-offset: 2px;
+  border-radius: var(--radius-card);
+}
+
+/* ========================================
+   BREAKOUT IMAGE SECTIONS
+   ======================================== */
+
+/* Smooth reveal animation for breakout images */
+@keyframes breakoutReveal {
+  from {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Full-bleed section styling */
+.breakout-section {
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+
+/* Image reveals with subtle animation on scroll into view */
+.breakout-image-mask {
+  animation: breakoutReveal var(--duration-long) var(--ease-enter) 0.2s backwards;
+}
+
+/* Content area scrollbar styling for breakout sections */
+.breakout-content-scroll {
+  /* Ensure proper scrolling on mobile */
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+.breakout-content-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.breakout-content-scroll::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.03);
+  border-radius: 3px;
+}
+
+.breakout-content-scroll::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 3px;
+}
+
+.breakout-content-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.25);
+}
+
+/* Mobile: ensure breakout sections flow properly */
+@media (max-width: 1023px) {
+  .breakout-section {
+    /* Allow content to flow naturally on mobile */
+    min-height: 500px !important; /* Minimum height to show content + image */
+    height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  
+  .breakout-content-scroll {
+    /* Content should be able to expand on mobile */
+    flex: 0 0 auto;
+    min-height: 0;
+    overflow-y: visible !important;
+  }
+  
+  /* Smooth fade-in animation for mobile cards - triggered by Intersection Observer */
+  @keyframes mobileCardSlideIn {
+    from {
+      opacity: 0;
+      transform: translateY(30px) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+  
+  /* Make stacked cards auto-height on mobile - FIXED CONSISTENT SPACING */
+  .stacked-card {
+    height: auto !important;
+    min-height: 500px !important; /* Ensure enough height for image cards */
+    position: relative !important;
+    /* CONSISTENT gap between cards - 16px spacing */
+    margin-bottom: 16px !important;
+    /* Add subtle shadow for depth */
+    box-shadow: 0 1px 3px rgba(12, 65, 89, 0.08) !important;
+    /* Allow cards to flow naturally */
+    display: flex !important;
+    flex-direction: column !important;
+    /* NO ANIMATION ON MOBILE - Prevent flickering */
+    opacity: 1 !important;
+    transform: translateY(0) scale(1) !important;
+    transition: none !important;
+    /* Performance optimization */
+    will-change: auto;
+  }
+  
+  /* Card is visible - no animation needed on mobile */
+  .stacked-card.card-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  
+  /* Cards container should not use sticky/absolute on mobile */
+  .stacked-cards-container-mobile > div:not(:first-child) {
+    height: auto !important;
+    /* Remove any spacing between card wrappers */
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+  
+  /* Individual card wrappers - FIXED SPACING */
+  .stacked-cards-container-mobile .sticky {
+    position: relative !important;
+    height: auto !important;
+  }
+  
+  .stacked-cards-container-mobile .absolute {
+    position: relative !important;
+    inset: auto !important;
+    height: auto !important;
+    /* CONSISTENT margin between cards */
+    margin: 0 0 16px 0 !important;
+  }
+  
+  /* Ensure no gaps in the stacked cards container */
+  .stacked-cards-container-mobile {
+    background: transparent !important;
+    /* Add consistent padding on sides and bottom */
+    padding: 0 16px 24px 16px !important;
+  }
+  
+  /* Ensure BreakoutImageSection children expand properly */
+  .stacked-card > section > div {
+    height: 100% !important;
+    min-height: 500px !important;
+  }
+  
+  /* Hide folder tabs on very small screens to prevent overlap */
+  @media (max-width: 640px) {
+    .card-tab {
+      display: none !important;
+    }
+  }
+}
+
+/* Subtle hover effect on images */
+.breakout-image-hover {
+  transition: transform var(--duration-long) var(--ease-interactive);
+}
+
+.breakout-image-hover:hover {
+  transform: scale(1.03);
+}
+
+/* Parallax effect for breakout images when scrolling */
+@media (prefers-reduced-motion: no-preference) {
+  .breakout-image-parallax {
+    will-change: transform;
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}
+
+/* ========================================
+   EVALUATION CARD ANIMATIONS
+   ======================================== */
+
+/* Score card entrance animation with bounce */
+@keyframes score-card-entrance {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  60% {
+    transform: translateY(-5px) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Pulse animation for score numbers */
+@keyframes score-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* Glow effect for achievement badges */
+@keyframes achievement-glow {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(255, 128, 18, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(255, 128, 18, 0.4);
+  }
+}
+
+/* Shimmer effect for loading states */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* Counter animation utility class */
+.animate-counter {
+  animation: score-pulse 0.3s ease-out;
+}
+
+/* Gradient animation for score cards */
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease infinite;
+}
+
+/* Mobile: Stacked cards are not sticky, they flow naturally */
+/* Remove entrance animation on mobile to prevent flickering */
+.stacked-card {
+  /* Disable initial hidden state on mobile */
+  opacity: 1 !important;
+  transform: translateY(0) scale(1) !important;
+  /* Remove transitions on mobile to prevent flickering */
+  transition: none !important;
+  /* Keep performance optimizations */
+  will-change: auto;
+}
+
+/* Card is visible - no animation needed on mobile */
+.stacked-card.card-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Cards container should not use sticky/absolute on mobile */
+.stacked-cards-container-mobile > div:not(:first-child) {
+  height: auto !important;
+  /* Remove any spacing between card wrappers */
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* Individual card wrappers - FIXED SPACING */
+.stacked-cards-container-mobile .sticky {
+  position: relative !important;
+  height: auto !important;
+}
+
+.stacked-cards-container-mobile .absolute {
+  position: relative !important;
+  inset: auto !important;
+  height: auto !important;
+  /* CONSISTENT margin between cards */
+  margin: 0 0 16px 0 !important;
+}
+
+/* Ensure no gaps in the stacked cards container */
+.stacked-cards-container-mobile {
+  background: transparent !important;
+  /* Add consistent padding on sides and bottom */
+  padding: 0 16px 24px 16px !important;
+}
+
+/* Ensure BreakoutImageSection children expand properly */
+.stacked-card > section > div {
+  height: 100% !important;
+  min-height: 500px !important;
+}
+
+/* Hide folder tabs on very small screens to prevent overlap */
+@media (max-width: 640px) {
+  .card-tab {
+    display: none !important;
+  }
+}
