@@ -8,6 +8,7 @@ import { ClusterTooltip } from './ClusterTooltip';
 import { Project } from '../types';
 import { getCategoryColor } from '../utils/categoryColors';
 import { clusterMarkers, Cluster } from '../utils/markerClustering';
+import { STATE_SVG_IDS } from '../data/stateMapCoordinates';
 import { Button } from './ui/button';
 import { Settings } from 'lucide-react';
 import svgPaths from "../imports/svg-v5k32ff4er";
@@ -426,12 +427,11 @@ export const InteractiveMap = memo(function InteractiveMap({ onInteractionChange
   const getHighlightedStateIds = (): Set<string> => {
     if (!highlightedProject) return new Set();
     
-    const { STATE_SVG_IDS } = require('../data/stateMapCoordinates');
     const stateIds = new Set<string>();
     
     // If it's a national project, highlight all states
     if (highlightedProject.isNationalProject) {
-      Object.values(STATE_SVG_IDS).forEach((stateId: any) => {
+      Object.values(STATE_SVG_IDS).forEach((stateId) => {
         if (stateId) {
           stateIds.add(stateId as string);
         }
